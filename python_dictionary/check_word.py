@@ -1,4 +1,8 @@
+import difflib
+
 import json
+
+from difflib import get_close_matches
 
 data=json.load(open('dictionary.json'))
 
@@ -18,6 +22,10 @@ def retrieve_definition(word):
     # Ensure dict returns meanings of acronyms
     elif word.upper() in data:
         return data[word.upper()]
+    
+    elif len(get_close_matches(word, data.keys())) > 0:
+        return ('Did you mean %s?' % get_close_matches(word, data.keys())[0])
+    
     else:
         return('That word does not exist in the dictionary. Please double check it.')
 

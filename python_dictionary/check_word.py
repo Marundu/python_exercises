@@ -38,4 +38,15 @@ def retrieve_definition(word):
 
 word=input('Enter a word: ')
 
-print(retrieve_definition(word))
+output=retrieve_definition(word)
+
+# remove square braces from the outputted definition
+
+# multiple definitions
+if type(output)==list:
+    for item in output:
+        print('-', item)
+# single definition
+else:
+    print('-', output)
+
